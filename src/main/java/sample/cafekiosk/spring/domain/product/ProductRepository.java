@@ -1,4 +1,4 @@
-package sample.cafekiosk.spring.product;
+package sample.cafekiosk.spring.domain.product;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -14,5 +14,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      */
     List<Product> findAllBySellingStatusIn(List<ProductSellingStatus> sellingStatuses);
 
-
+    List<Product> findAllByProductNumberIn(List<String> productNumbers);
 }
