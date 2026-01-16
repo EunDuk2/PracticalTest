@@ -3,10 +3,7 @@ package sample.cafekiosk.spring.api.service.mail;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.Spy;
+import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import sample.cafekiosk.spring.client.mail.MailSendClient;
 import sample.cafekiosk.spring.domain.history.mail.MailSendHistory;
@@ -22,8 +19,8 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class MailServiceTest {
 
-//    @Mock
-    @Spy
+    @Mock
+//    @Spy
     private MailSendClient mailSendClient;
 
     @Mock
@@ -41,17 +38,22 @@ class MailServiceTest {
 //
 //        MailService mailService = new MailService(mailSendClient, mailSendHistoryRepository);
 
+        // BDDMockito.given
+        BDDMockito.given(mailSendClient.sendMail(anyString(), anyString(), anyString(), anyString()))
+                        .willReturn(true);
+
         // Spy는 when절 쓰면 안 됨
-//        when(mailSendClient.sendMail(any(String.class),
-//                anyString(),
-//                any(String.class),
-//                any(String.class)))
-//                .thenReturn(true);
+        // Mockito.when
+        when(mailSendClient.sendMail(any(String.class),
+                anyString(),
+                any(String.class),
+                any(String.class)))
+                .thenReturn(true);
 
         // spy 전용
-        doReturn(true)
-                .when(mailSendClient)
-                .sendMail(anyString(), anyString(), anyString(), anyString());
+//        doReturn(true)
+//                .when(mailSendClient)
+//                .sendMail(anyString(), anyString(), anyString(), anyString());
 
 
         // when
