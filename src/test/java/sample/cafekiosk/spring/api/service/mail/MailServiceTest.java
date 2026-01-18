@@ -39,16 +39,16 @@ class MailServiceTest {
 //        MailService mailService = new MailService(mailSendClient, mailSendHistoryRepository);
 
         // BDDMockito.given
-//        BDDMockito.given(mailSendClient.sendMail(anyString(), anyString(), anyString(), anyString()))
-//                        .willReturn(true);
+        BDDMockito.given(mailSendClient.sendMail(anyString(), anyString(), anyString(), anyString()))
+                        .willReturn(true);
 
         // Spy는 when절 쓰면 안 됨
         // Mockito.when
-        when(mailSendClient.sendMail(any(String.class),
-                anyString(),
-                any(String.class),
-                any(String.class)))
-                .thenReturn(true);
+//        when(mailSendClient.sendMail(any(String.class),
+//                anyString(),
+//                any(String.class),
+//                any(String.class)))
+//                .thenReturn(true);
 
         // spy 전용
 //        doReturn(true)
